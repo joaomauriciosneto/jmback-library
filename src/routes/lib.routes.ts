@@ -8,9 +8,6 @@ libRouter.get('/', new LibraryContoller().listAllLibrary);
 
 libRouter.get('/:idLib', new LibraryContoller().listLibraryById);
 
-// essa rota está errada!
-libRouter.get('/name', new LibraryContoller().listLibraryByName);
-
 libRouter.post('/', new LibraryContoller().createLibrary);
 
 libRouter.put('/:idLib', new LibraryContoller().editLibrary);
@@ -20,3 +17,7 @@ libRouter.delete('/:idLib', new LibraryContoller().deleteLibrary);
 libRouter.post('/book/:idLib', new BooksContoller().createBook);
 
 libRouter.get('/book/:idLib', new BooksContoller().listBookById);
+
+libRouter.put('/book/:idLib/:idBook', new BooksContoller().editBook);
+
+libRouter.delete('/book/:idLib/:idBook', new BooksContoller().deleteBook);

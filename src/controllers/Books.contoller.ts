@@ -151,4 +151,49 @@ export class BooksContoller {
 
     }
 
+    public deleteBook(req: Request, res: Response) {
+
+        try {
+
+            const {idLib, idBook} = req.params;
+
+            const library = libList.find(item => item.id == idLib);
+
+            if(!library) {
+                return res.status(404).send({
+                    ok: false,
+                    message: 'Bookstore not found!'
+                })
+            }
+
+            const book = library.books
+            ? library.books.findIndex(item => item.idBook == idBook)
+            : -1;
+
+            if(book < 0) {
+                return res.status(404).send({
+                    ok: false,
+                    message: 'Book not found!'
+                })
+            }
+
+            library.books?.splice(book, 1)
+
+            return res.status(200).send({
+                ok: true,
+                message: 'Book successfully deleted!'
+            })
+            
+        } catch (error: any) {
+         
+            return res.status(500).send({
+                ok: false,
+                message: 'Server instability!',
+                error: error.toString()
+            })
+
+        }
+
+    }
+
 }
