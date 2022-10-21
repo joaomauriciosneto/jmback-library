@@ -4,6 +4,8 @@ import { LibraryContoller } from "../controllers/Library.controller";
 
 export const libRouter = Router();
 
+libRouter.get('/name', new LibraryContoller().listLibraryByName);
+
 libRouter.get('/', new LibraryContoller().listAllLibrary);
 
 libRouter.get('/:idLib', new LibraryContoller().listLibraryById);

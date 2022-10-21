@@ -206,4 +206,37 @@ export class LibraryContoller {
 
     }
 
+    public listLibraryByName(req: Request, res: Response) {
+
+        try {
+
+            const {name} = req.query;
+
+            const library = libList.find(item => item.name === name);
+
+            if(!library) {
+                return res.status(404).send({
+                    ok: false,
+                    message: 'Bookstore not found!'
+                })
+            }
+
+            return res.status(200).send({
+                ok: true,
+                message: 'Bookstore found!',
+                data: library
+            })
+            
+        } catch (error: any) {
+            
+            return res.status(500).send({
+                ok: false,
+                message:'Server instability!',
+                error: error.toString()
+            })
+
+        }
+
+    }
+
 }
